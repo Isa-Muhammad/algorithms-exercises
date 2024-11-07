@@ -9,11 +9,34 @@
  
  */
 
+// function nestedAdd(array) {
+//   return array.reduce((acc, cur) => {
+//     // base case
+//     if (typeof cur === "number") {
+//       return acc + cur;
+//     } else {
+//       // recursive step
+//       return acc + nestedAdd(cur);
+//     }
+//   }, 0);
+// }
+
+// Using a for-loop
 function nestedAdd(array) {
-  // write code here
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    // base case
+    if (typeof array[i] === "number") {
+      sum += array[i];
+    } else {
+      // recursive step
+      sum += nestedAdd(array[i]);
+    }
+  }
+  return sum;
 }
 
-test.skip("nested arrays addition", () => {
+test("nested arrays addition", () => {
   expect(nestedAdd([1, 2, 3])).toEqual(6);
   expect(nestedAdd([1, [2], 3])).toEqual(6);
   expect(nestedAdd([[[[[[[[[5]]]]]]]]])).toEqual(5);
