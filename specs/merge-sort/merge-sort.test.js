@@ -36,6 +36,7 @@ function merge(left, right) {
     }
   }
 
+  // one of the arrays would be empty hence concatenating the populated array
   return arr.concat(left, right);
 }
 
