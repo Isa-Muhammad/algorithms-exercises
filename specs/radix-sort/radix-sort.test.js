@@ -13,14 +13,16 @@
 
 function getDigit(number, place, longestNumber) {
   // e.g. number = 1391, place = 0, longestNumber = 4;
+  // returns 1
 
   const string = number.toString();
   // Determine the offset needed to align the number
   const size = string.length;
   const mod = longestNumber - size;
+  const adjustedIndex = place - mod;
 
   // Return the digit at the adjusted index, or undefined if out of bounds
-  return string[place - mod] || 0; // Return 0 if the index is out of bounds
+  return string[adjustedIndex] || 0; // Return 0 if the index is out of bounds
 }
 
 function findLongestNumber(array) {
