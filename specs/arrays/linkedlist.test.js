@@ -57,6 +57,7 @@ class LinkedList {
     return node.value;
   }
   delete(index) {
+    // handle deleting head
     if (index === 0) {
       const head = this.head;
       if (head) {
@@ -69,7 +70,7 @@ class LinkedList {
       return head.value;
     }
 
-    const node = this._find(index - 1);
+    const node = this._find(index - 1); // find node previous to the one we want to delete
     const excise = node.next;
     if (!excise) return null;
     node.next = excise.next;
