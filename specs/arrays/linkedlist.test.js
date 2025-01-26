@@ -23,42 +23,57 @@
   you work
 */
 
+// Note: Each node doesnt know about the rest of the nodes, all it knows is where the next node is.
+// Example:
+// head -> { value: 1, next: { value: 2, next: null } }
+// tail -> { value: 2, next: null }
+// The head node only know where the next node is, as each node has a value and next property to point to the next node
+
 class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
     this.length = 0;
   }
+
   push(value) {
+    // accepts a value and adds to the end of the list
     const node = new Node(value);
     this.length++;
     if (!this.head) {
+      // if empty, the new node will also be the head
       this.head = node;
     } else {
+      // point current tail to the new added node
       this.tail.next = node;
     }
+    // assign tail to be new node
     this.tail = node;
   }
   pop() {
+    // removes the last value in the list and returns it
     return this.delete(this.length - 1);
   }
+  // private find method(helper)
   _find(index) {
+    // if index is out of bounds
     if (index >= this.length) return null;
     let current = this.head;
     for (let i = 0; i < index; i++) {
       current = current.next;
     }
-
     return current;
   }
   get(index) {
+    // accepts an index and returns the value at that position
     const node = this._find(index);
     if (!node) return void 0;
     return node.value;
   }
   delete(index) {
-    // handle deleting head
+    // accepts an index, removes value from list, collapses, and returns removed value
     if (index === 0) {
+      // if deleting head
       const head = this.head;
       if (head) {
         this.head = head.next;
@@ -69,9 +84,9 @@ class LinkedList {
       this.length--;
       return head.value;
     }
-
-    const node = this._find(index - 1); // find node previous to the one we want to delete
-    const excise = node.next;
+    // find node previous to the one we want to delete
+    const node = this._find(index - 1);
+    const excise = node.next; // excise is the node to cut out
     if (!excise) return null;
     node.next = excise.next;
     if (!node.next) this.tail = node.next;
