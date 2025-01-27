@@ -20,34 +20,36 @@ class Tree {
   constructor() {
     this.root = null;
   }
+
   add(value) {
     if (this.root === null) {
       this.root = new Node(value);
     } else {
       let current = this.root;
+      // infinite loop keep running until stopped -> while(true)
       while (true) {
         if (current.value > value) {
           // go left
-
           if (current.left) {
-            current = current.left;
+            current = current.left; // run loop again
           } else {
             current.left = new Node(value);
-            break;
+            break; // stop infinte while loop
           }
         } else {
           // go right
           if (current.right) {
-            current = current.right;
+            current = current.right; // run loop again
           } else {
             current.right = new Node(value);
-            break;
+            break; // stop infinte while loop
           }
         }
       }
     }
-    return this;
+    return this; // return tree
   }
+
   toObject() {
     return this.root;
   }
