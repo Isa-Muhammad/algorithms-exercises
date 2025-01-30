@@ -1,10 +1,29 @@
+// recursive
+// const breadthFirstTraverse = (queue, array) => {
+//   // base case
+//   if (!queue.length) return array;
+
+//   const node = queue.shift();
+//   array.push(node.value);
+//   if (node.left) queue.push(node.left);
+//   if (node.right) queue.push(node.right);
+//   return breadthFirstTraverse(queue, array);
+// };
+
+// iterative
 const breadthFirstTraverse = (queue, array) => {
-  // fill code in here
+  while (queue.length) {
+    const node = queue.shift();
+    array.push(node.value);
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+  return array;
 };
 
 // unit tests
 // do not modify the below code
-describe.skip("breadth-first tree traversal", function () {
+describe("breadth-first tree traversal", function () {
   const answer = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
 
   const tree = {
@@ -16,9 +35,9 @@ describe.skip("breadth-first tree traversal", function () {
         left: {
           value: "G",
           left: null,
-          right: null
+          right: null,
         },
-        right: null
+        right: null,
       },
       right: {
         value: "E",
@@ -28,10 +47,10 @@ describe.skip("breadth-first tree traversal", function () {
           left: {
             value: "K",
             left: null,
-            right: null
-          }
-        }
-      }
+            right: null,
+          },
+        },
+      },
     },
     right: {
       value: "C",
@@ -40,16 +59,16 @@ describe.skip("breadth-first tree traversal", function () {
         left: {
           value: "I",
           left: null,
-          right: null
+          right: null,
         },
         right: {
           value: "J",
           left: null,
-          right: null
-        }
+          right: null,
+        },
       },
-      right: null
-    }
+      right: null,
+    },
   };
 
   test("breadthFirstTraverse", () => {

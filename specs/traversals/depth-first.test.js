@@ -1,24 +1,36 @@
 const preorderTraverse = (node, array) => {
+  // base case
   if (!node) return array;
+
   array.push(node.value);
+  // recursive calls
   array = preorderTraverse(node.left, array);
   array = preorderTraverse(node.right, array);
   return array;
 };
 
 const inorderTraverse = (node, array) => {
+  // base case
   if (!node) return array;
+
+  // recursive calls
   array = inorderTraverse(node.left, array);
   array.push(node.value);
   array = inorderTraverse(node.right, array);
+
   return array;
 };
 
 const postorderTraverse = (node, array) => {
+  // base case
   if (!node) return array;
+
+  // recursive calls
   array = postorderTraverse(node.left, array);
   array = postorderTraverse(node.right, array);
+
   array.push(node.value);
+
   return array;
 };
 
