@@ -15,21 +15,24 @@ const heapSort = (array) => {
   return array;
 };
 
-const swapPlace = (index1, index2, array) => {
-  let temp = array[index1];
-  array[index1] = array[index2];
-  array[index2] = temp;
-  return array;
-};
-
 const createMaxHeap = (array) => {
+  // loops over array and call heapify in reverse order
   for (let i = Math.floor(array.length / 2) - 1; i >= 0; i--) {
     heapify(array, i, array.length);
   }
   return array;
 };
 
+const swapPlace = (index1, index2, array) => {
+  // swap two items in an array
+  let temp = array[index1];
+  array[index1] = array[index2];
+  array[index2] = temp;
+  return array;
+};
+
 const heapify = (array, index, heapSize) => {
+  // Check if node is in the right place i.e "Is it bigger than its child nodes?"
   const left = 2 * index + 1;
   const right = 2 * index + 2;
 
@@ -42,7 +45,7 @@ const heapify = (array, index, heapSize) => {
   if (heapSize > right && array[largestValueIndex] < array[right]) {
     largestValueIndex = right;
   }
-
+  // base case: If it goes out of bounds or a swap doesnt happen
   if (largestValueIndex !== index) {
     swapPlace(index, largestValueIndex, array);
     heapify(array, largestValueIndex, heapSize);
