@@ -38,7 +38,7 @@ describe("BloomFilter", function () {
   beforeEach(() => {
     bf = new BloomFilter();
   });
-  test.skip("returns false when empty", () => {
+  test("returns false when empty", () => {
     expect(bf.contains("Brian")).toBe(false);
     expect(bf.contains("Sarah")).toBe(false);
     expect(bf.contains("Simona")).toBe(false);
@@ -50,7 +50,7 @@ describe("BloomFilter", function () {
     expect(bf.contains("Sarah")).toBe(false);
     expect(bf.contains("Simona")).toBe(false);
   });
-  test.skip("handles many items", () => {
+  test("handles many items", () => {
     const names = [
       "Brian",
       "Simona",
